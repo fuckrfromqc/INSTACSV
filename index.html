@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INSTACSV</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>INSTACSV</h1>
+    <form id="instaForm">
+        <label for="username">Nom d'utilisateur Instagram :</label>
+        <input type="text" id="username" required>
+        <br>
+        <input type="checkbox" id="followers"> Followers
+        <input type="checkbox" id="following"> Following
+        <br>
+        <button type="submit">Exporter en CSV</button>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
