@@ -19,7 +19,8 @@ document.getElementById('instaForm').addEventListener('submit', async (event) =>
 });
 
 async function getInstagramData(username) {
-    const url = `https://www.instagram.com/${username}/?__a=1`;
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    const url = `${proxyUrl}https://www.instagram.com/${username}/?__a=1`;
     const response = await axios.get(url);
     const data = response.data.graphql.user;
     const followers = data.edge_followed_by.edges.map(edge => edge.node.username);
@@ -27,6 +28,7 @@ async function getInstagramData(username) {
 
     return { followers, following };
 }
+
 
 function convertToCSV(followers, following) {
     const maxRows = Math.max(followers.length, following.length);
