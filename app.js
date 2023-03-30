@@ -27,3 +27,28 @@ async function getInstagramData(username) {
 
     return { followers, following };
 }
+
+function convertToCSV(followers, following) {
+    const maxRows = Math.max(followers.length, following.length);
+    let csvContent = 'Followers,Following\n';
+
+    for (let i = 0; i < maxRows; i++) {
+        const follower = followers[i] ? `"${followers[i]}"` : '';
+        const following = following[i] ? `"${following[i]}"` : '';
+        csvContent += `${follower},${following}\n`;
+    }
+
+    return csvContent;
+}
+
+function downloadCSV(csvContent, fileName) {
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', fileName);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
